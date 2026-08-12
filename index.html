@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Street Dreamer — AI Workforce Operations | Samuel McKinney</title>
+<meta name="description" content="Street Dreamer builds AI workers that handle dispatch, call-center volume, and busy work — so your team does the real work. Free workflow audit.">
+<style>
+  :root {
+    --bg: #0b0b0f;
+    --panel: #14141a;
+    --panel2: #1b1b23;
+    --line: #26262f;
+    --ink: #f5f5f7;
+    --sub: #9a9aa5;
+    --amber: #ffb347;
+    --amber2: #ff8c42;
+    --green: #4ade80;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 640px; margin: 0 auto; padding: 0 20px; }
+
+  /* ── Top bar ─────────────────────────── */
+  .topbar {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(11,11,15,0.85);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--line);
+  }
+  .topbar .wrap { display: flex; align-items: center; justify-content: space-between; height: 56px; }
+  .brand { font-weight: 800; letter-spacing: -0.3px; font-size: 16px; }
+  .brand span { color: var(--amber); }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    font-weight: 700; font-size: 14px; text-decoration: none;
+    padding: 12px 20px; border-radius: 12px; cursor: pointer;
+    transition: transform .12s ease, box-shadow .12s ease, opacity .12s ease;
+    border: none;
+  }
+  .btn:active { transform: scale(0.97); }
+  .btn-amber { background: linear-gradient(90deg, var(--amber), var(--amber2)); color: #141414; box-shadow: 0 6px 24px rgba(255,179,71,0.25); }
+  .btn-ghost { background: transparent; color: var(--ink); border: 1px solid var(--line); }
+  .btn-ghost:hover { border-color: #3a3a46; }
+  .btn-sm { padding: 8px 14px; font-size: 13px; border-radius: 10px; }
+  .arrow { transition: transform .12s ease; }
+  .btn:hover .arrow { transform: translateX(3px); }
+
+  /* ── Hero ────────────────────────────── */
+  .hero { padding: 52px 0 40px; text-align: center; }
+  .badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 11px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase;
+    color: var(--amber); border: 1px solid rgba(255,179,71,0.35);
+    background: rgba(255,179,71,0.08);
+    padding: 6px 12px; border-radius: 999px; margin-bottom: 22px;
+  }
+  .hero h1 { font-size: 40px; line-height: 1.12; letter-spacing: -1.2px; font-weight: 800; }
+  .hero h1 .accent { color: var(--amber); }
+  .hero .sub { margin-top: 16px; font-size: 17px; color: var(--sub); }
+  .hero .who { margin-top: 10px; font-size: 14px; color: #6f6f7a; }
+  .hero .ctas { margin-top: 30px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+  /* ── Sections ────────────────────────── */
+  section { padding: 40px 0; }
+  .eyebrow { font-size: 11px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: var(--amber); margin-bottom: 10px; }
+  h2 { font-size: 26px; letter-spacing: -0.6px; font-weight: 800; margin-bottom: 14px; }
+  .lede { color: var(--sub); font-size: 15px; margin-bottom: 24px; }
+
+  .problem {
+    background: linear-gradient(180deg, rgba(255,179,71,0.06), transparent);
+    border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+    text-align: center; padding: 34px 0;
+  }
+  .problem p { font-size: 19px; font-weight: 700; letter-spacing: -0.3px; }
+  .problem p em { color: var(--amber); font-style: normal; }
+
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .card {
+    background: var(--panel); border: 1px solid var(--line);
+    border-radius: 16px; padding: 18px 16px;
+  }
+  .card .ic { font-size: 20px; margin-bottom: 8px; }
+  .card .t { font-weight: 700; font-size: 15px; }
+  .card .d { color: var(--sub); font-size: 13px; margin-top: 4px; }
+
+  .steps { display: flex; flex-direction: column; gap: 12px; }
+  .step {
+    display: flex; gap: 16px; align-items: flex-start;
+    background: var(--panel); border: 1px solid var(--line);
+    border-radius: 16px; padding: 18px;
+  }
+  .step .num {
+    flex: 0 0 auto; width: 40px; height: 40px; border-radius: 12px;
+    background: linear-gradient(135deg, var(--amber), var(--amber2)); color: #141414;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 800; font-size: 16px;
+  }
+  .step .t { font-weight: 700; font-size: 16px; }
+  .step .d { color: var(--sub); font-size: 13.5px; margin-top: 3px; }
+  .step .price { color: var(--amber); font-weight: 800; font-size: 13px; margin-top: 4px; }
+
+  /* ── Video ───────────────────────────── */
+  .video-card {
+    background: var(--panel); border: 1px solid var(--line); border-radius: 18px; overflow: hidden;
+  }
+  video { width: 100%; display: block; background: #000; }
+  .video-card .cap { padding: 14px 16px; }
+  .video-card .cap .t { font-weight: 700; }
+  .video-card .cap .d { color: var(--sub); font-size: 13px; margin-top: 2px; }
+  .video-card + .video-card { margin-top: 16px; }
+
+  /* ── FAQ ─────────────────────────────── */
+  details {
+    background: var(--panel); border: 1px solid var(--line);
+    border-radius: 14px; margin-bottom: 10px; overflow: hidden;
+  }
+  details summary {
+    list-style: none; cursor: pointer; padding: 16px 18px;
+    font-weight: 700; font-size: 15px;
+    display: flex; justify-content: space-between; align-items: center; gap: 12px;
+  }
+  details summary::-webkit-details-marker { display: none; }
+  details summary::after { content: "+"; color: var(--amber); font-size: 20px; font-weight: 700; transition: transform .15s ease; }
+  details[open] summary::after { transform: rotate(45deg); }
+  details .a { padding: 0 18px 16px; color: var(--sub); font-size: 14px; }
+
+  /* ── Terms ───────────────────────────── */
+  .terms { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .term { background: var(--panel2); border: 1px solid var(--line); border-radius: 14px; padding: 16px; }
+  .term .t { font-weight: 700; font-size: 14px; color: var(--amber); }
+  .term .d { color: var(--sub); font-size: 13px; margin-top: 5px; }
+
+  /* ── Contact ─────────────────────────── */
+  .contact-card {
+    background: var(--panel); border: 1px solid var(--line); border-radius: 18px; padding: 24px;
+    display: flex; gap: 18px; align-items: center;
+  }
+  .contact-card img { width: 108px; height: 108px; border-radius: 10px; background: #fff; padding: 6px; }
+  .contact-card .name { font-size: 19px; font-weight: 800; }
+  .contact-card .role { color: var(--sub); font-size: 13px; margin-top: 2px; }
+  .contact-links { display: flex; flex-direction: column; gap: 10px; margin-top: 16px; }
+  .contact-links a {
+    display: flex; align-items: center; gap: 10px;
+    background: var(--panel); border: 1px solid var(--line);
+    border-radius: 14px; padding: 15px 16px; text-decoration: none; color: var(--ink);
+    font-weight: 600; font-size: 15px;
+  }
+  .contact-links a:hover { border-color: #3a3a46; }
+  .contact-links a .ic { font-size: 18px; }
+  .contact-links a .hint { margin-left: auto; color: var(--sub); font-size: 12px; }
+
+  .big-cta {
+    margin-top: 28px;
+    background: linear-gradient(90deg, var(--amber), var(--amber2));
+    color: #141414; text-decoration: none;
+    border-radius: 16px; padding: 20px; text-align: center;
+    font-size: 18px; font-weight: 800; display: block;
+    box-shadow: 0 10px 32px rgba(255,179,71,0.3);
+  }
+  .big-cta .sub { display: block; font-size: 13px; font-weight: 600; opacity: 0.85; margin-top: 4px; }
+
+  footer { padding: 36px 0 48px; text-align: center; color: #5f5f6a; font-size: 12.5px; }
+  footer .row { margin-bottom: 6px; }
+  footer a { color: var(--sub); text-decoration: none; }
+  footer a:hover { color: var(--ink); }
+
+  @media (max-width: 400px) {
+    .grid2, .terms { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap">
+    <div class="brand">STREET DREAMER<span>.</span></div>
+    <a class="btn btn-amber btn-sm" href="https://streetdreamerhq.com/home/#audit" target="_blank" rel="noopener">Book Free Audit <span class="arrow">→</span></a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero wrap">
+  <div class="badge">● Air Force Veteran · Birmingham, AL</div>
+  <h1>AI workers that handle the busy work — <span class="accent">so your team does the real work.</span></h1>
+  <p class="sub">Dispatch, call-center volume, missed-call recovery, follow-up — built for how your business actually runs.</p>
+  <p class="who">Samuel McKinney · Street Dreamer</p>
+  <div class="ctas">
+    <a class="btn btn-amber" href="#demo">Watch the demo <span class="arrow">→</span></a>
+    <a class="btn btn-ghost" href="https://streetdreamerhq.com/home/#audit" target="_blank" rel="noopener">Request an audit</a>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<div class="problem">
+  <div class="wrap">
+    <p>Missed calls, slow follow-ups, busy work — <em>that's real money walking out the door.</em></p>
+  </div>
+</div>
+
+<!-- WHAT I BUILD -->
+<section class="wrap">
+  <div class="eyebrow">What I build</div>
+  <h2>Work that runs itself</h2>
+  <p class="lede">Not a chatbot. AI workers that pick up, sort, schedule, and follow up — so nothing falls through the cracks.</p>
+  <div class="grid2">
+    <div class="card"><div class="ic">📞</div><div class="t">After-hours calls</div><div class="d">Calls answered 24/7 — no more voicemail pile.</div></div>
+    <div class="card"><div class="ic">🚦</div><div class="t">Dispatch support</div><div class="d">Requests routed to the right person, first time.</div></div>
+    <div class="card"><div class="ic">🔁</div><div class="t">Lead follow-up</div><div class="d">Every inquiry answered — none left to cool.</div></div>
+    <div class="card"><div class="ic">📤</div><div class="t">Outreach</div><div class="d">Sequences that run themselves, on brand.</div></div>
+    <div class="card"><div class="ic">🗂️</div><div class="t">Back-office admin</div><div class="d">Scheduling, intake, data entry — automated.</div></div>
+    <div class="card"><div class="ic">⚙️</div><div class="t">Workflow systems</div><div class="d">Your process, mapped and running on autopilot.</div></div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="wrap">
+  <div class="eyebrow">How we start</div>
+  <h2>See it before you buy it</h2>
+  <div class="steps">
+    <div class="step">
+      <div class="num">1</div>
+      <div>
+        <div class="t">Qualified Workflow Audit</div>
+        <div class="d">30 minutes on your process. I show you exactly what's eating your week — no obligation.</div>
+        <div class="price">Free</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="num">2</div>
+      <div>
+        <div class="t">Pilot on your real data</div>
+        <div class="d">3 days on your actual calls and workflow. You decide with your eyes, not my pitch.</div>
+        <div class="price">$500 · 3 days</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="num">3</div>
+      <div>
+        <div class="t">Retained — month to month</div>
+        <div class="d">Your AI workforce, built to your workflow and run for you. Cancel anytime.</div>
+        <div class="price">$15K setup + $5K/mo</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEMO -->
+<section class="wrap" id="demo">
+  <div class="eyebrow">Watch it work</div>
+  <h2>See the system</h2>
+  <div class="video-card">
+    <video controls preload="none" poster="poster_demo.jpg" playsinline>
+      <source src="StreetDreamer_Demo.mp4" type="video/mp4">
+      Your browser can't play this video — <a href="https://streetdreamerhq.com">watch on the site</a>.
+    </video>
+    <div class="cap">
+      <div class="t">Demo — 60 seconds</div>
+      <div class="d">AI workers handling the busy work in real time.</div>
+    </div>
+  </div>
+  <div class="video-card">
+    <video controls preload="none" poster="poster_walk.jpg" playsinline>
+      <source src="StreetDreamer_Walkthrough.mp4" type="video/mp4">
+      Your browser can't play this video — <a href="https://streetdreamerhq.com">watch on the site</a>.
+    </video>
+    <div class="cap">
+      <div class="t">Walkthrough — the full build</div>
+      <div class="d">How a workflow gets mapped, built, and run for you.</div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="wrap">
+  <div class="eyebrow">Straight answers</div>
+  <h2>What people ask</h2>
+  <details open>
+    <summary>Is this just another chatbot?</summary>
+    <div class="a">No. A chatbot replies. These are AI workers that act — they answer calls, route requests, schedule, follow up, and report back. They execute work, they don't just hold a conversation.</div>
+  </details>
+  <details>
+    <summary>Do we have to replace the tools we use?</summary>
+    <div class="a">Not necessarily. The audit maps what you already run before we change anything. We build around your workflow — not over it.</div>
+  </details>
+  <details>
+    <summary>What about our data and privacy?</summary>
+    <div class="a">Your data stays yours. Access is scoped to the work, nothing is trained on your customer data, and billing keeps human review. Security is designed in, not bolted on.</div>
+  </details>
+  <details>
+    <summary>How fast can this be running?</summary>
+    <div class="a">Audit within days. Pilot runs on your real data for 3 days. A retained build is sized to your workflow — you see it working before you commit.</div>
+  </details>
+  <details>
+    <summary>What if we don't like it?</summary>
+    <div class="a">Cancel — no contract, no penalty. You're out $500 and I'm out of your hair. I don't like dealing with contracts either.</div>
+  </details>
+  <details>
+    <summary>Who do you work with?</summary>
+    <div class="a">Field service first — HVAC &amp; plumbing, electrical &amp; trades, roofing &amp; restoration, multi-location service teams. If missed calls and handoffs cost you work, that's our lane.</div>
+  </details>
+</section>
+
+<!-- TERMS -->
+<section class="wrap">
+  <div class="eyebrow">The terms</div>
+  <h2>Service, not a contract</h2>
+  <div class="terms">
+    <div class="term"><div class="t">No lock-in</div><div class="d">Month-to-month. Cancel anytime. If it stops paying for itself, you leave.</div></div>
+    <div class="term"><div class="t">Your data stays yours</div><div class="d">Scoped access only. No training on your customer data, no surprises.</div></div>
+    <div class="term"><div class="t">Human review on billing</div><div class="d">Every charge is human-approved. Automation handles the work, never the purse.</div></div>
+    <div class="term"><div class="t">You see it first</div><div class="d">Audit → pilot → retained. You decide at every step.</div></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="wrap">
+  <div class="eyebrow">Contact</div>
+  <h2>Let's find the leak in your week</h2>
+  <div class="contact-card">
+    <img src="StreetDreamer_QR.png" alt="Scan to open streetdreamerhq.com">
+    <div>
+      <div class="name">Samuel McKinney</div>
+      <div class="role">Air Force Veteran · Birmingham, AL</div>
+    </div>
+  </div>
+  <div class="contact-links">
+    <a href="https://streetdreamerhq.com/home/#audit" target="_blank" rel="noopener"><span class="ic">📋</span> Request a free audit <span class="hint">streetdreamerhq.com →</span></a>
+    <a href="https://streetdreamerhq.com" target="_blank" rel="noopener"><span class="ic">🌐</span> Website <span class="hint">streetdreamerhq.com →</span></a>
+    <a href="mailto:samueljmckinney@gmail.com?subject=Street%20Dreamer%20%E2%80%94%20Workflow%20Audit%20Request"><span class="ic">✉️</span> Email me <span class="hint">samueljmckinney@gmail.com</span></a>
+  </div>
+  <a class="big-cta" href="https://streetdreamerhq.com/home/#audit" target="_blank" rel="noopener">Tell me what's eating your week — I'll show you
+    <span class="sub">Free Qualified Workflow Audit · 30 minutes</span>
+  </a>
+</section>
+
+<footer>
+  <div class="row"><a href="https://streetdreamerhq.com/privacy" target="_blank" rel="noopener">Privacy</a> &nbsp;·&nbsp; <a href="https://streetdreamerhq.com/terms" target="_blank" rel="noopener">Terms</a> &nbsp;·&nbsp; <a href="https://streetdreamerhq.com/welcome" target="_blank" rel="noopener">Welcome</a></div>
+  <div>© 2026 Street Dreamer LLC · Birmingham, AL · <a href="https://streetdreamerhq.com">streetdreamerhq.com</a></div>
+</footer>
+
+</body>
+</html>
